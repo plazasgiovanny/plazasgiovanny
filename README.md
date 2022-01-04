@@ -59,7 +59,7 @@ flutter --version
 <h3>OJO Posible Error (Recomendación)<h3>
 
 * Si por alguna razón al ejecutar el comando "flutter --version" y este se queda como cargando o pensando y no muestra la versión y ningún error
-* entonces: ejecute el Visual Code con el plugin de flutter y ejecute el comando desde la terminal del visual code  
+* entonces: ejecute el Visual Code con el plugin de flutter y ejecute el comando desde la terminal del visual Studio code  
 
 <h3>Tercer Paso:</h3>
 <h2>Flutter Doctor</h2>
@@ -98,8 +98,44 @@ Según la guia de instalación de flutter es necesario Instalar y configurar And
 4. Se puede seleccionar uno de los dipositivos que el Android Studio tiene Pre-configurados por defecto o Crear uno desde cero.
 * cuando configuren la RAM del dispositivo lo recomendable es poner 4GB por ende su maquina deberia tener mas de 4GB
 5. Despues de configurar el Dispositivo, deberá seleccionar el sistema operativo que usted quíera que el dispositivo tenga (selecciones una imagen x86 o una x86_64)
+6. En este punto si toda la instalación ha ocurrido de manera correcta, podrá ejecutar su Emulador sin ningún problema
+* **Si Existen Errores**
+Al poner a correr el emulador le pide Instalar **[intel® haxm](https://github.com/intel/haxm/releases/download/v7.7.0/haxm-windows_v7_7_0.zip)** pero la instalación termina Fallida ejecutandolo desde el IDE de Andorid Studio, deberá instalaro manualmente.
+* <p>Si despues de esto al ejecutar el Emulador, el IDE arroja el mensaje "El proceso del emulador ha terminado" o algo similar deberá crear un archivo para solucionar este error</p>
 
+* **Archivo Solucion**
+* La pagina donde se econtró la solución es la siguiente: ``` https://exerror.com/solved-the-emulator-process-for-avd-pixel_c_api_30-was-killed-in-windows/ ```
+* Se necesitará crear un archivo en la ruta ``` C:\Users\"Su_nombre_de_Usuario"\.android``` el nombre del archivo será **advancedFeatures.ini** y debera Escribir dentro del archivo las siguientes lineas de codigo:
+``` 
+# Here's how to disable Vulkan apps to talk to the emulator.
 
+# Add the following lines to ~/.android/advancedFeatures.ini (create this file if it doesn't exist already):
+
+Vulkan = off
+GLDirectMem = on
+``` 
+Con esto su emulador deberia ejecutarse de forma correcta y ya podriamos lanzar el emulador desde Visual Studio Code.
+
+<h2>Aceptación de Lincecias</h2>
+Antes de Iniciar a trabajar con flutter se debe aceptar las licencias del SDK-de-Android
+
+1. Asegurece de tener Instalada la version 8 de JAVA y que el ambiente de [JAVA_HOME] este configurado en la carpeta JDK's
+2. En las versiones de Android Studio 2.2 o mayores viene con este JDK instalado y listo para usar
+3. Abra la consola o la powershell con permisos de administrado para ejecutar el siguiente comando con el fin de aceptar las licensias: ```flutter doctor --android-licenses``` (Acepte las licencias).
+
+**Si APARECE UN ERROR**
+* Si le sale un error donde dice que el SDK manager de Android estudio no fue encontrado, que revise que tenga el ultimo SDK y asegurece de cmdLine-tools este instalado para resolver esto.
+* entonces:
+* 3.1. Cierre la PowerShell o Cmd
+* 3.2. Ejecute el Android Studio, en más Acciones busque la opción SdkManager
+* 3.3. Luego seleccione la pestaña SDK Tools
+* 3.4. Hagan Check sobre la opción "Android SDK Command Line Tools (Lastest)" 
+* 3.5. Apliquen los cambios y Aceptenlos.
+* 3.6. Puede cerrar Android Studio
+* 3.7. Ejecute nuevamente el paso #3 de Aceptación de Lincencias
+4. Una vez aceptadas las licencias (y que resolvieran el error si lo tuvieron), ejecute nuevamente el comando ```flutter doctor``` para revisar que no falte por configurar ningun componente
+
+# Ahora ya puedes Crear tu Proyecto de Flutter o descargarlo y empezar a trabajar en el.
 
 
 
